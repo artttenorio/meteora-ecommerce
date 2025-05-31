@@ -1,5 +1,5 @@
-import Header from "../components/initial-page/header";
-import Main from "../components/initial-page/main";
+import Header from "../components/initialPage/header";
+import Main from "../components/initialPage/main";
 
 export default function InitialPage() {
   return (

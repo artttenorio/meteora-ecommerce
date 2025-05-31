@@ -46,7 +46,7 @@ const FullScreenCarousel: React.FC = () => {
           <img
             src={slide.image}
             alt={slide.alt}
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-[400px]"
           />
         </SwiperSlide>
       ))}
