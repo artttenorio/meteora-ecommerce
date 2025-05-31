@@ -1,0 +1,28 @@
+export default function ContainerCard(props: any) {
+  return (
+    <>
+      <div className="flex flex-col justify-between h-[400px] w-[300px] ">
+        <img src={props.image} alt="image"></img>
+        <div className="items-start space-y-4 mx-2 mt-5">
+          <p
+            className="text-xl font-semibold
+"
+          >
+            {" "}
+            {props.name}
+          </p>
+          <p className="text-xs"> {props.description}</p>
+          <p className="text-sm font-semibold"> {props.price}</p>
+
+          <button
+            type="submit"
+            className="bg-[#9353FF] text-white px-3 cursor-pointer hover:bg-[#5d4881]"
+          >
+            {" "}
+            Ver mais
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}
