@@ -5,16 +5,16 @@ import flower from "../../assets/images/icones/flower1.png";
 export default function Footer() {
   return (
     <>
-      <div className=" absolute bg-black h-[200px] w-full ">
-        <div className="flex mt-10 justify-center">
-          <p className=" text-2xl text-white semi-bold ">
+      <div className="bg-black w-full px-4 py-10 ">
+        <div className="md:flex justify-center">
+          <p className="text-xl text-center md:text-2xl text-white semi-bold ">
             {" "}
             Conheça todas as nossas facilidades{" "}
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-30 mx-60 mt-10">
-          <div className="flex flex-row gap-5">
+        <div className="flex flex-col gap-y-10 md:flex-row items-center justify-center md:gap-30 mx-auto md:mx-30 mt-10">
+          <div className="flex flex-col-1 sm:flex-col-1 gap-5">
             <img src={pix} alt="imagem" />
             <div className="flex flex-col space-y-3 ">
               <p className="text-[#DAFF01] text-lg"> Pague Pelo Pix </p>
@@ -47,35 +47,35 @@ export default function Footer() {
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="flex mt-10 justify-center mx-60 ">
-          <div className="border-2 items-center mt-10 text-center max-w-[600px] py-5 px-5">
-            <p>
+      <div className="flex w-full mt-10 justify-center px-4 py-10 ">
+        <div className="border-2 items-center mt-10 text-center max-w-[600px] py-5 px-5">
+          <p>
+            {" "}
+            Quer receber nossas novidades, promoções exclusivas e 10% OFF na
+            primeira compra? Cadastre-se!
+          </p>
+          <div className="flex flex-row gap-5 mt-5 justify-center">
+            <input
+              type="text"
+              placeholder="Digite seu email"
+              className="border w-64"
+            />
+            <button type="submit" className=" bg-[#9353FF] px-2 ">
               {" "}
-              Quer receber nossas novidades, promoções exclusivas e 10% OFF na
-              primeira compra? Cadastre-se!
-            </p>
-            <div className="flex flex-row gap-5 mt-5 justify-center">
-              <input
-                type="text"
-                placeholder="Digite seu email"
-                className="border w-64"
-              />
-              <button type="submit" className=" bg-[#9353FF] px-2 ">
-                {" "}
-                Enviar
-              </button>
-            </div>
+              Enviar
+            </button>
           </div>
         </div>
+      </div>
 
-        <div className=" w-full bg-black mt-10 h-10 items-center flex justify-center">
-          <p className="text-white text-sm">
-            {" "}
-            2025 © Desenvolvido por Arthur Tenorio | Projeto fictício sem fins
-            comerciais.
-          </p>
-        </div>
+      <div className=" w-full bg-black mt-10 h-10 items-center flex justify-center">
+        <p className="text-white text-sm text-center">
+          {" "}
+          2025 © Desenvolvido por Arthur Tenorio | Projeto fictício sem fins
+          comerciais.
+        </p>
       </div>
     </>
   );

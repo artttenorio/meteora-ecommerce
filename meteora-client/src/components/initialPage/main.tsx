@@ -9,7 +9,7 @@ import casaco from "../../assets/images/items/desktop/jaqueta.png";
 import oculos from "../../assets/images/items/desktop/oculos.png";
 import ContainerCard from "../ItemsCard/containerCard";
 
-import modelCamisetaTablet from "../../assets/images/models/tablet/camiseta1.png";
+import modelCamisetaTablet from "../../assets/images/models/tablet/Camiseta1.png";
 import modelBolsaTablet from "../../assets/images/models/tablet/Bolsa1.png";
 import modelCalcadoTablet from "../../assets/images/models/tablet/Tenis1.png";
 import modelCalcaTablet from "../../assets/images/models/tablet/Calça1.png";
@@ -152,7 +152,7 @@ export default function Main() {
             Produtos que estão bombando!
           </p>
           <div className="flex justify-center">
-            <div className=" grid grid-cols-1 gap-y-40 lg:grid-cols-3 lg:gap-30 mx-auto mb-50 ">
+            <div className=" grid grid-cols-1 gap-y-40  lg:grid-cols-3 lg:gap-40 mx-auto mb-50 ">
               {containerItem.map((item) => (
                 <ContainerCard
                   key={item.name}
