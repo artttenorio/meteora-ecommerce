@@ -137,12 +137,12 @@ export default function Main() {
           <FullScreenCarousel />
         </div>
 
-        <div className="mt-15  sm:px-10 md:px-22 lg:px-30 xl:px-40 ">
+        <div className="mt-15 sm:px-10 md:px-22 lg:px-30 xl:px-40 ">
           <p className="flex text-2xl sm:text-3xl justify-center mb-10 ">
             {" "}
             Busque por categoria:
           </p>
-          <div className="flex flex-wrap lg:grid-cols-6 sm:justify-between gap-4 sm:gap-6 mb-12 ">
+          <div className="flex flex-wrap justify-center lg:grid-cols-6 sm:justify-between gap-4 sm:gap-6 mb-12 ">
             {cardItem.map((item) => (
               <Card key={item.name} name={item.name} image={item.ImageURl} />
             ))}

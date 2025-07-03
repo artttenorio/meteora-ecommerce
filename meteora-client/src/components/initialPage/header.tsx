@@ -1,5 +1,6 @@
 import { useState } from "react";
 import logo from "../../assets/images/logos/logo1.png";
+import LoginModal from "../login-area/login";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -40,10 +41,7 @@ export default function Header() {
           </div>
 
           <div className="hidden sm:flex space-x-4">
-            <button type="submit" className="text-white  bg-[#9353FF] px-3 ">
-              {" "}
-              Login
-            </button>
+            <LoginModal />
             <button
               type="submit"
               className="text-white border-2 border-white px-3 "
