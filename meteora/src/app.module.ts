@@ -5,6 +5,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { CategoryModule } from './category/category.module';
 import { join } from 'path';
+import { ProductsController } from './products/products.controller';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -13,6 +15,8 @@ import { join } from 'path';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'), // nova config
     }),
     CategoryModule,
+    ProductsModule,
   ],
+  controllers: [ProductsController],
 })
 export class AppModule {}
