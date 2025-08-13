@@ -1,13 +1,7 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import FullScreenCarousel from "../carousel/FullScreenCarousel";
 import Card from "../ItemsCard/card";
-
-import camiseta from "../../assets/images/items/desktop/camiseta.png";
-import bolsa from "../../assets/images/items/desktop/bolsa.png";
-import calcado from "../../assets/images/items/desktop/tenis.png";
-import calca from "../../assets/images/items/desktop/calça.png";
-import casaco from "../../assets/images/items/desktop/jaqueta.png";
-import oculos from "../../assets/images/items/desktop/oculos.png";
-import ContainerCard from "../ItemsCard/containerCard";
 
 import modelCamisetaTablet from "../../assets/images/models/tablet/Camiseta1.png";
 import modelBolsaTablet from "../../assets/images/models/tablet/Bolsa1.png";
@@ -29,6 +23,7 @@ import modelCalcado from "../../assets/images/models/desktop/Tenis.png";
 import modelCasaco from "../../assets/images/models/desktop/Jaqueta3.png";
 import modelOculos from "../../assets/images/models/desktop/Óculos4.png";
 import modelCalca from "../../assets/images/models/desktop/Calça.png";
+import ContainerCard from "../ItemsCard/containerCard";
 
 type CardItem = {
   name: string;
@@ -44,32 +39,15 @@ type ContainerItem = {
   price: string;
 };
 
-const cardItem: CardItem[] = [
-  {
-    name: "Camiseta",
-    ImageURl: camiseta,
-  },
-  {
-    name: "Bolsas",
-    ImageURl: bolsa,
-  },
-  {
-    name: "Calçados",
-    ImageURl: calcado,
-  },
-  {
-    name: "Calças",
-    ImageURl: calca,
-  },
-  {
-    name: "Casacos",
-    ImageURl: casaco,
-  },
-  {
-    name: "Óculos",
-    ImageURl: oculos,
-  },
-];
+type Category = {
+  name: string;
+  imageDesktop?: string;
+  imageTablet?: string;
+  imagePhone?: string;
+  description?: string;
+  price?: string;
+  imageUrl?: string; // caso tenha só uma imagem principal
+};
 
 const containerItem: ContainerItem[] = [
   {
@@ -130,6 +108,25 @@ const containerItem: ContainerItem[] = [
 ];
 
 export default function Main() {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [products, setProducts] = useState<Category[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const resCategories = await axios.get(
+          "http://localhost:3000/categories"
+        );
+        setCategories(resCategories.data);
+
+        const resProducts = await axios.get("http://localhost:3000/products");
+        setProducts(resProducts.data);
+      } catch (err) {
+        console.error("Erro ao buscar dados", err);
+      }
+    }
+    fetchData();
+  }, []);
   return (
     <>
       <div>
@@ -142,9 +139,13 @@ export default function Main() {
             {" "}
             Busque por categoria:
           </p>
-          <div className="flex flex-wrap justify-center lg:grid-cols-6 sm:justify-between gap-4 sm:gap-6 mb-12 ">
-            {cardItem.map((item) => (
-              <Card key={item.name} name={item.name} image={item.ImageURl} />
+          <div className="flex flex-wrap justify-center lg:grid-cols-6 sm:justify-between gap-4 sm:gap-6 mb-12">
+            {categories.map((item) => (
+              <Card
+                key={item.name}
+                name={item.name}
+                image={`/images/items/desktop/${item.imageUrl}`}
+              />
             ))}
           </div>
 

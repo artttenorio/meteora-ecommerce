@@ -5,10 +5,10 @@ export declare class ProductService {
     constructor(prisma: PrismaService);
     create(data: CreateProductDto): import("generated/prisma").Prisma.Prisma__ProductClient<{
         name: string;
+        imageUrl: string | null;
         id: number;
         description: string | null;
         price: import("generated/prisma/runtime/library").Decimal;
-        imageUrl: string | null;
         stock: number;
         categoryId: number;
         createdAt: Date;
@@ -17,14 +17,15 @@ export declare class ProductService {
     findAll(): import("generated/prisma").Prisma.PrismaPromise<({
         category: {
             name: string;
+            imageUrl: string | null;
             id: number;
         };
     } & {
         name: string;
+        imageUrl: string | null;
         id: number;
         description: string | null;
         price: import("generated/prisma/runtime/library").Decimal;
-        imageUrl: string | null;
         stock: number;
         categoryId: number;
         createdAt: Date;

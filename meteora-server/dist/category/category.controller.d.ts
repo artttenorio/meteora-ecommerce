@@ -5,15 +5,16 @@ export declare class CategoryController {
     constructor(categoryService: CategoryService);
     create(dto: CreateCategoryDto): import("generated/prisma").Prisma.Prisma__CategoryClient<{
         name: string;
+        imageUrl: string | null;
         id: number;
     }, never, import("generated/prisma/runtime/library").DefaultArgs, import("generated/prisma").Prisma.PrismaClientOptions>;
     findAll(): import("generated/prisma").Prisma.PrismaPromise<({
         products: {
             name: string;
+            imageUrl: string | null;
             id: number;
             description: string | null;
             price: import("generated/prisma/runtime/library").Decimal;
-            imageUrl: string | null;
             stock: number;
             categoryId: number;
             createdAt: Date;
@@ -21,6 +22,7 @@ export declare class CategoryController {
         }[];
     } & {
         name: string;
+        imageUrl: string | null;
         id: number;
     })[]>;
 }

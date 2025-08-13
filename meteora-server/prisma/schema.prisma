@@ -18,6 +18,7 @@ model Category {
   id        Int       @id @default(autoincrement())
   name      String    @unique
   products  Product[]
+  imageUrl    String?
 }
 
 model Product {
@@ -32,3 +33,5 @@ model Product {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
+
+
