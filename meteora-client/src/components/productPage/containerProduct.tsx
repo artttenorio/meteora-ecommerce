@@ -3,98 +3,84 @@ import imagePhone from "../../assets/images/models/phone/Camiseta1.png";
 
 export default function ProductContainer() {
   return (
-    <>
-      <div className="mt-15 px-4 sm:px-10 md:px-22 lg:px-30 xl:px-40 mb-50 ">
-        <div className="flex flex-col sm:flex-row flex-wrap justify-between ">
-          <div className="flex justify-center">
+    <div className="container mx-auto mt-0 px-4 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Image Section */}
+        <div className="flex justify-center items-center">
+          <picture>
+            <source srcSet={image} media="(min-width: 640px)" />
             <img
-              src={image}
-              alt="imagem"
-              width={500}
-              className=" hidden sm:block "
+              src={imagePhone}
+              alt="Product Image"
+              className="rounded-lg shadow-lg"
             />
+          </picture>
+        </div>
 
-            <img src={imagePhone} alt="imagem" className="block sm:hidden" />
+        <div className="flex flex-col justify-center mt-20">
+          <div className="mb-6">
+            <h1 className="text-3xl font-bold text-gray-800 mb-2">
+              Nome do Produto
+            </h1>
+            <p className="text-gray-600 text-lg">
+              Descrição breve e atraente do produto. Pode destacar seus
+              principais benefícios e características.
+            </p>
           </div>
-          <div className="">
-            <div className="flex flex-col gap-y-5 mb-10">
-              <p className="text-2xl font-semibold"> Nome </p>
-              <p className="text-sm"> Descrição </p>
-              <hr />
+
+          <div className="mb-6">
+            <p className="text-4xl font-extrabold text-gray-900 mb-2">
+              R$ 120,00
+            </p>
+            <p className="text-sm text-gray-500">
+              Vendido e entregue por <strong>Nossa Loja</strong>
+            </p>
+          </div>
+
+          {/* Color Selector */}
+          <div className="mb-6">
+            <h2 className="text-xl font-semibold text-gray-800 mb-3">Cores</h2>
+            <div className="flex space-x-4">
+              <div className="w-8 h-8 rounded-full bg-blue-500 cursor-pointer border-2 border-blue-700"></div>
+              <div className="w-8 h-8 rounded-full bg-red-500 cursor-pointer"></div>
+              <div className="w-8 h-8 rounded-full bg-green-500 cursor-pointer"></div>
             </div>
+          </div>
 
-            <div className="flex flex-col gap-y-5 mb-10">
-              <p className="text-2xl font-semibold"> Preço R$:</p>
-              <p> Vendido e entregue por</p>
-              <hr />
-            </div>
-
-            <div className="mb-10">
-              <p className="text-2xl font-semibold mb-5"> Cores: </p>
-              <div className="flex flex-row gap-20 mb-5">
-                <div className="flex flex-col gap-2 gap-y-5">
-                  <input type="radio" id="cor1" name="cor" />
-                  <label htmlFor="cor1"> Cor1 </label>
-                </div>
-
-                <div className="flex flex-col gap-2 gap-y-5">
-                  <input type="radio" id="cor2" name="cor" />
-                  <label htmlFor="cor2"> Cor2 </label>
-                </div>
-
-                <div className="flex flex-col gap-2 gap-y-5">
-                  <input type="radio" id="cor3" name="cor" />
-                  <label htmlFor="cor3"> Cor3 </label>
-                </div>
+          {/* Size Selector */}
+          <div className="mb-6">
+            <h2 className="text-xl font-semibold text-gray-800 mb-3">
+              Tamanho
+            </h2>
+            <div className="flex space-x-4">
+              <div className="flex items-center justify-center w-12 h-12 border-2 border-gray-300 rounded-md cursor-pointer hover:bg-gray-200">
+                P
               </div>
-
-              <hr />
-            </div>
-
-            <div className="mb-10">
-              <p className="text-2xl font-semibold mb-5"> Tamanho </p>
-
-              <div className="flex flex-row md:flex-row md:gap-20 sm:gap-5 sm:flex-col mb-5 w-full">
-                <div className="flex flex-col gap-2 gap-y-2">
-                  <input type="radio" id="tam1" name="tam" />
-                  <label htmlFor="tam1"> Tam1 </label>
-                </div>
-
-                <div className="flex flex-col  gap-2 gap-y-2">
-                  <input type="radio" id="tam1" name="tam" />
-                  <label htmlFor="tam2"> Tam2 </label>
-                </div>
-
-                <div className="flex flex-col  gap-2 gap-y-2">
-                  <input type="radio" id="tam1" name="tam" />
-                  <label htmlFor="tam3"> Tam3 </label>
-                </div>
-
-                <div className="flex flex-col gap-2 gap-y-2">
-                  <input type="radio" />
-                  <label> Tam4 </label>
-                </div>
-
-                <div className="flex flex-col  gap-2 gap-y-2">
-                  <input type="radio" />
-                  <label> Tam5 </label>
-                </div>
+              <div className="flex items-center justify-center w-12 h-12 border-2 border-gray-300 rounded-md cursor-pointer hover:bg-gray-200">
+                M
               </div>
-              <hr />
+              <div className="flex items-center justify-center w-12 h-12 border-2 border-gray-300 rounded-md cursor-pointer hover:bg-gray-200">
+                G
+              </div>
+              <div className="flex items-center justify-center w-12 h-12 border-2 border-gray-300 rounded-md cursor-pointer hover:bg-gray-200">
+                GG
+              </div>
             </div>
+          </div>
 
-            <div>
-              <button
-                type="submit"
-                className="bg-[#9353FF] text-white px-5 py-2 cursor-pointer hover:bg-[#5d4881]"
-              >
-                {" "}
-                Adicionar à sacola
-              </button>
+          {/* Quantity and Add to Cart */}
+          <div className="flex items-center space-x-4 mb-60">
+            <div className="flex items-center border-2 border-gray-300 rounded-md">
+              <button className="px-3 py-1">-</button>
+              <span className="px-4">1</span>
+              <button className="px-3 py-1">+</button>
             </div>
+            <button className="bg-blue-600 text-white font-bold px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+              Adicionar à Sacola
+            </button>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
