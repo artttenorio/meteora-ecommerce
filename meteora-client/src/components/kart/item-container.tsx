@@ -1,6 +1,16 @@
-import image from "@/assets/images/models/desktop/Camiseta.png";
+type ItemContainerProps = {
+  name: string;
+  description: string;
+  price: string;
+  quantity: number;
+};
 
-export default function ItemContainer(props: any) {
+export default function ItemContainer({
+  name,
+  description,
+  price,
+  quantity,
+}: ItemContainerProps) {
   return (
     <>
       <div className="flex flex-col w-full">
@@ -10,14 +20,14 @@ export default function ItemContainer(props: any) {
         </p>
         <div className="mt-30 flex flex-row justify-between w-full px-2 ">
           <div>
-            <img src={image} width={100} height={100} />
+            <img src={""} width={100} height={100} />
           </div>
           <div>
-            <p> {props.name || "Sem nome"} </p>
-            <p> {props.description || "Sem descrição"} </p>
+            <p> {name || "Sem nome"} </p>
+            <p> {description || "Sem descrição"} </p>
           </div>
           <div>
-            <p> {props.price || "Sem preço"}</p>
+            <p> {price || "Sem preço"}</p>
           </div>
           <div>
             <button>-</button>
@@ -25,7 +35,7 @@ export default function ItemContainer(props: any) {
               type="number"
               min="1"
               className="w-12 text-center"
-              value={props.quantity || 1}
+              value={quantity || 1}
               readOnly
             />
             <button>+</button>

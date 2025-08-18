@@ -1,22 +1,38 @@
 import { useNavigate } from "react-router";
 
-export default function ContainerCard(props: any) {
+type ContainerCardProps = {
+  name: string;
+  description: string;
+  price: string;
+  imageDesktop: string;
+  imageTablet: string;
+  imagePhone: string;
+};
+
+export default function ContainerCard({ 
+  name, 
+  description, 
+  price, 
+  imageDesktop, 
+  imageTablet, 
+  imagePhone 
+}: ContainerCardProps) {
   const navigate = useNavigate();
   return (
     <>
       <div className="flex flex-col justify-between h-[400px] w-[300px] ">
         <img
-          src={props.imageDesktop}
+          src={imageDesktop}
           alt="image"
           className="hidden md:block"
         ></img>
         <img
-          src={props.imageTablet}
+          src={imageTablet}
           alt="image"
           className="hidden sm:block md:hidden"
         ></img>
         <img
-          src={props.imagePhone}
+          src={imagePhone}
           alt="image"
           className="block sm:hidden"
         ></img>
@@ -27,10 +43,10 @@ export default function ContainerCard(props: any) {
 "
           >
             {" "}
-            {props.name}
+            {name}
           </p>
-          <p className="text-xs"> {props.description}</p>
-          <p className="text-sm font-semibold"> {props.price}</p>
+          <p className="text-xs"> {description}</p>
+          <p className="text-sm font-semibold"> {price}</p>
 
           <button
             onClick={() => navigate("/product")}

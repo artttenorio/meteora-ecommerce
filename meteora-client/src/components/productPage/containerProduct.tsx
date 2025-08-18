@@ -1,16 +1,12 @@
-import image from "../../assets/images/models/desktop/Camiseta.png";
-import imagePhone from "../../assets/images/models/phone/Camiseta1.png";
-
 export default function ProductContainer() {
   return (
     <div className="container mx-auto mt-0 px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Image Section */}
         <div className="flex justify-center items-center">
           <picture>
-            <source srcSet={image} media="(min-width: 640px)" />
+            <source srcSet={""} media="(min-width: 640px)" />
             <img
-              src={imagePhone}
+              src={""}
               alt="Product Image"
               className="rounded-lg shadow-lg"
             />
@@ -37,7 +33,6 @@ export default function ProductContainer() {
             </p>
           </div>
 
-          {/* Color Selector */}
           <div className="mb-6">
             <h2 className="text-xl font-semibold text-gray-800 mb-3">Cores</h2>
             <div className="flex space-x-4">
@@ -47,7 +42,6 @@ export default function ProductContainer() {
             </div>
           </div>
 
-          {/* Size Selector */}
           <div className="mb-6">
             <h2 className="text-xl font-semibold text-gray-800 mb-3">
               Tamanho
@@ -68,7 +62,6 @@ export default function ProductContainer() {
             </div>
           </div>
 
-          {/* Quantity and Add to Cart */}
           <div className="flex items-center space-x-4 mb-60">
             <div className="flex items-center border-2 border-gray-300 rounded-md">
               <button className="px-3 py-1">-</button>

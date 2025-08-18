@@ -8,7 +8,7 @@ export default function KartContainer() {
       </div>
 
       <div className="flex border-2 w-[600px] h-[600px] mx-40">
-        <ItemContainer />
+        <ItemContainer name={""} description={""} price={""} quantity={0} />
       </div>
     </>
   );
