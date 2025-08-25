@@ -15,4 +15,15 @@ export class ProductService {
       include: { category: true },
     });
   }
+
+  remove(id: number) {
+    return this.prisma.product.delete({ where: { id } });
+  }
+
+  update(id: number, data: CreateProductDto) {
+    return this.prisma.product.update({
+      where: { id },
+      data,
+    });
+  }
 }

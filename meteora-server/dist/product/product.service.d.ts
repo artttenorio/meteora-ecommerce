@@ -5,14 +5,14 @@ export declare class ProductService {
     constructor(prisma: PrismaService);
     create(data: CreateProductDto): import("generated/prisma").Prisma.Prisma__ProductClient<{
         name: string;
-        imageUrl: string | null;
-        id: number;
         description: string | null;
         price: import("generated/prisma/runtime/library").Decimal;
+        imageUrl: string | null;
         stock: number;
-        categoryId: number;
         createdAt: Date;
         updatedAt: Date;
+        id: number;
+        categoryId: number;
     }, never, import("generated/prisma/runtime/library").DefaultArgs, import("generated/prisma").Prisma.PrismaClientOptions>;
     findAll(): import("generated/prisma").Prisma.PrismaPromise<({
         category: {
@@ -22,13 +22,35 @@ export declare class ProductService {
         };
     } & {
         name: string;
-        imageUrl: string | null;
-        id: number;
         description: string | null;
         price: import("generated/prisma/runtime/library").Decimal;
+        imageUrl: string | null;
         stock: number;
-        categoryId: number;
         createdAt: Date;
         updatedAt: Date;
+        id: number;
+        categoryId: number;
     })[]>;
+    remove(id: number): import("generated/prisma").Prisma.Prisma__ProductClient<{
+        name: string;
+        description: string | null;
+        price: import("generated/prisma/runtime/library").Decimal;
+        imageUrl: string | null;
+        stock: number;
+        createdAt: Date;
+        updatedAt: Date;
+        id: number;
+        categoryId: number;
+    }, never, import("generated/prisma/runtime/library").DefaultArgs, import("generated/prisma").Prisma.PrismaClientOptions>;
+    update(id: number, data: CreateProductDto): import("generated/prisma").Prisma.Prisma__ProductClient<{
+        name: string;
+        description: string | null;
+        price: import("generated/prisma/runtime/library").Decimal;
+        imageUrl: string | null;
+        stock: number;
+        createdAt: Date;
+        updatedAt: Date;
+        id: number;
+        categoryId: number;
+    }, never, import("generated/prisma/runtime/library").DefaultArgs, import("generated/prisma").Prisma.PrismaClientOptions>;
 }

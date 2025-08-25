@@ -9,7 +9,9 @@ export default function Admin() {
           <li>
             <Link to="/admin/products/new" className="text-blue-600 hover:underline">Cadastrar Produto</Link>
           </li>
-          {/* Adicione outros links de administração aqui */}
+          <li>
+            <Link to="/admin/products" className="text-blue-600 hover:underline">Ver Produtos</Link>
+          </li>
         </ul>
       </nav>
       <main>

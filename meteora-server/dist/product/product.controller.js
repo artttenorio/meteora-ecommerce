@@ -27,6 +27,12 @@ let ProductController = class ProductController {
     findAll() {
         return this.productService.findAll();
     }
+    remove(id) {
+        return this.productService.remove(+id);
+    }
+    update(id, dto) {
+        return this.productService.update(+id, dto);
+    }
 };
 exports.ProductController = ProductController;
 __decorate([
@@ -42,6 +48,21 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], ProductController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ProductController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, create_product_dto_1.CreateProductDto]),
+    __metadata("design:returntype", void 0)
+], ProductController.prototype, "update", null);
 exports.ProductController = ProductController = __decorate([
     (0, common_1.Controller)('products'),
     __metadata("design:paramtypes", [product_service_1.ProductService])

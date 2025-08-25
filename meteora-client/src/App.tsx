@@ -5,6 +5,7 @@ import ProductPage from "./pages/productPage";
 import Kart from "./pages/kart";
 import Admin from "./pages/Admin";
 import ProductRegister from "./components/admin/product-Register/ProductRegister";
+import ViewProducts from "./pages/ViewProducts";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/kart" element={<Kart />} />
           <Route path="/admin" element={<Admin />}>
             <Route path="products/new" element={<ProductRegister />} />
+            <Route path="products" element={<ViewProducts />} />
           </Route>
         </Routes>
       </BrowserRouter>

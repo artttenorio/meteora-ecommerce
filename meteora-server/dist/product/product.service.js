@@ -25,6 +25,15 @@ let ProductService = class ProductService {
             include: { category: true },
         });
     }
+    remove(id) {
+        return this.prisma.product.delete({ where: { id } });
+    }
+    update(id, data) {
+        return this.prisma.product.update({
+            where: { id },
+            data,
+        });
+    }
 };
 exports.ProductService = ProductService;
 exports.ProductService = ProductService = __decorate([
