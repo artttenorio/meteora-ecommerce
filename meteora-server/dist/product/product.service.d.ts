@@ -31,6 +31,17 @@ export declare class ProductService {
         id: number;
         categoryId: number;
     })[]>;
+    findOne(id: number): import("generated/prisma").Prisma.Prisma__ProductClient<{
+        name: string;
+        description: string | null;
+        price: import("generated/prisma/runtime/library").Decimal;
+        imageUrl: string | null;
+        stock: number;
+        createdAt: Date;
+        updatedAt: Date;
+        id: number;
+        categoryId: number;
+    } | null, null, import("generated/prisma/runtime/library").DefaultArgs, import("generated/prisma").Prisma.PrismaClientOptions>;
     remove(id: number): import("generated/prisma").Prisma.Prisma__ProductClient<{
         name: string;
         description: string | null;

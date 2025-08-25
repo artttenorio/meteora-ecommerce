@@ -11,10 +11,11 @@ type Category = {
   imagePhone?: string;
   description?: string;
   price?: string;
-  imageUrl?: string; 
+  imageUrl?: string;
 };
 
 type Product = {
+  id: number;
   name: string;
   description: string;
   price: string;
@@ -71,6 +72,7 @@ export default function Main() {
               {products.map((item) => (
                 <ContainerCard
                   key={item.name}
+                  id={item.id}
                   name={item.name}
                   description={item.description}
                   price={item.price}

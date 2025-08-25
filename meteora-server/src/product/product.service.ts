@@ -16,6 +16,10 @@ export class ProductService {
     });
   }
 
+  findOne(id: number) {
+    return this.prisma.product.findUnique({ where: { id } });
+  }
+
   remove(id: number) {
     return this.prisma.product.delete({ where: { id } });
   }

@@ -13,7 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<InitialPage />} />
-          <Route path="/product" element={<ProductPage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/kart" element={<Kart />} />
           <Route path="/admin" element={<Admin />}>
             <Route path="products/new" element={<ProductRegister />} />

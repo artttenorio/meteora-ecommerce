@@ -25,6 +25,9 @@ let ProductService = class ProductService {
             include: { category: true },
         });
     }
+    findOne(id) {
+        return this.prisma.product.findUnique({ where: { id } });
+    }
     remove(id) {
         return this.prisma.product.delete({ where: { id } });
     }

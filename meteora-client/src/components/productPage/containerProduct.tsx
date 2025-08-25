@@ -1,12 +1,49 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+type Product = {
+  id: number;
+  name: string;
+  description: string;
+  price: string;
+  imageUrl: string;
+};
+
 export default function ProductContainer() {
+  const { id } = useParams();
+  const [product, setProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    async function fetchProduct() {
+      try {
+        const res = await axios.get(`http://localhost:3000/products/${id}`);
+        setProduct(res.data);
+      } catch (err) {
+        console.error("Erro ao buscar produto", err);
+      }
+    }
+
+    if (id) {
+      fetchProduct();
+    }
+  }, [id]);
+
+  if (!product) {
+    return <div>Carregando...</div>;
+  }
+
   return (
     <div className="container mx-auto mt-0 px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex justify-center items-center">
           <picture>
-            <source srcSet={""} media="(min-width: 640px)" />
+            <source
+              srcSet={`/images/items/desktop/${product.imageUrl}`}
+              media="(min-width: 640px)"
+            />
             <img
-              src={""}
+              src={`/images/items/desktop/${product.imageUrl}`}
               alt="Product Image"
               className="rounded-lg shadow-lg"
             />
@@ -16,17 +53,14 @@ export default function ProductContainer() {
         <div className="flex flex-col justify-center mt-20">
           <div className="mb-6">
             <h1 className="text-3xl font-bold text-gray-800 mb-2">
-              Nome do Produto
+              {product.name}
             </h1>
-            <p className="text-gray-600 text-lg">
-              Descrição breve e atraente do produto. Pode destacar seus
-              principais benefícios e características.
-            </p>
+            <p className="text-gray-600 text-lg">{product.description}</p>
           </div>
 
           <div className="mb-6">
             <p className="text-4xl font-extrabold text-gray-900 mb-2">
-              R$ 120,00
+              R$ {product.price}
             </p>
             <p className="text-sm text-gray-500">
               Vendido e entregue por <strong>Nossa Loja</strong>
