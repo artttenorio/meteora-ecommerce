@@ -1,16 +1,10 @@
+
 import { useState } from "react";
 import logo from "../../assets/images/logos/logo1.png";
-import LoginModal from "../login-area/login";
-import LoggedInHeader from "./LoggedInHeader";
+import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function LoggedInHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const token = localStorage.getItem("token");
-
-  if (token) {
-    return <LoggedInHeader />;
-  }
-
   return (
     <>
       <header className="bg-[#000000] w-full py-3 px-6">
@@ -48,14 +42,15 @@ export default function Header() {
           </div>
 
           <div className="hidden sm:flex space-x-4">
-            <LoginModal />
-            <button
-              type="submit"
-              className="text-white border-2 border-white px-3 "
-            >
-              {" "}
-              Cadastro
-            </button>
+            <Link to="/profile">
+              <button
+                type="submit"
+                className="text-white border-2 border-white px-3 "
+              >
+                {" "}
+                Profile
+              </button>
+            </Link>
           </div>
           <button
             className="flex md:hidden text-white text-2xl"
@@ -80,12 +75,11 @@ export default function Header() {
             <a className="hover:underline" href="#">
               Promoções
             </a>
-            <button className="text-white bg-[#9353FF] px-3 py-1 rounded mt-2">
-              Login
-            </button>
-            <button className="text-white border-2 border-white px-3 py-1 rounded">
-              Cadastro
-            </button>
+            <Link to="/profile">
+              <button className="text-white bg-[#9353FF] px-3 py-1 rounded mt-2">
+                Profile
+              </button>
+            </Link>
           </div>
         )}
       </header>

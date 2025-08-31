@@ -1,0 +1,28 @@
+import { PrismaService } from 'src/api/prisma/prisma.service';
+import { CreateCategoryDto } from './dto/create-category.dto';
+export declare class CategoryService {
+    private prisma;
+    constructor(prisma: PrismaService);
+    create(data: CreateCategoryDto): import("generated/prisma").Prisma.Prisma__CategoryClient<{
+        name: string;
+        imageUrl: string | null;
+        id: number;
+    }, never, import("generated/prisma/runtime/library").DefaultArgs, import("generated/prisma").Prisma.PrismaClientOptions>;
+    findAll(): import("generated/prisma").Prisma.PrismaPromise<({
+        products: {
+            name: string;
+            imageUrl: string | null;
+            id: number;
+            description: string | null;
+            price: import("generated/prisma/runtime/library").Decimal;
+            stock: number;
+            categoryId: number;
+            createdAt: Date;
+            updatedAt: Date;
+        }[];
+    } & {
+        name: string;
+        imageUrl: string | null;
+        id: number;
+    })[]>;
+}

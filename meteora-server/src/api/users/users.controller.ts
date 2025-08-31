@@ -21,8 +21,7 @@ export class UsersController {
 
   @Post('signup')
   async create(@Body() data: any): Promise<any> {
-    const { userData } = data;
-    const user = await this.userService.createUser(userData);
+    const user = await this.userService.createUser(data);
 
     return {
       user,
