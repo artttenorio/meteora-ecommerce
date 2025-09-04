@@ -1,10 +1,28 @@
-
 import { useState } from "react";
 import logo from "../../assets/images/logos/logo1.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoggedInHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Remove tokens do localStorage e sessionStorage
+    localStorage.removeItem("token"); // se você usa "token" como chave
+    localStorage.removeItem("refreshToken"); // caso use refresh
+    sessionStorage.clear();
+
+    // Se tiver cookies de autenticação
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+
+    // Força reload limpando estados em memória
+    window.location.href = "/";
+  };
+
   return (
     <>
       <header className="bg-[#000000] w-full py-3 px-6">
@@ -51,6 +69,12 @@ export default function LoggedInHeader() {
                 Profile
               </button>
             </Link>
+            <button
+              onClick={handleLogout}
+              className="text-white border-2 border-white px-3 "
+            >
+              Logout
+            </button>
           </div>
           <button
             className="flex md:hidden text-white text-2xl"
@@ -80,6 +104,12 @@ export default function LoggedInHeader() {
                 Profile
               </button>
             </Link>
+            <button
+              onClick={handleLogout}
+              className="text-white bg-red-500 px-3 py-1 rounded mt-2"
+            >
+              Logout
+            </button>
           </div>
         )}
       </header>

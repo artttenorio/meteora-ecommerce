@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Dialog, DialogContent } from "../ui/dialog";
 import { LoginForm } from "../login-form";
 
-export default function LoginModal() {
-  const [open, setOpen] = useState(false);
+export default function LoginModal({ open, setOpen, setRegisterOpen }: { open: boolean, setOpen: (open: boolean) => void, setRegisterOpen: (open: boolean) => void }) {
 
   return (
     <>
@@ -17,7 +16,7 @@ export default function LoginModal() {
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-[450px]">
-          <LoginForm />
+          <LoginForm setOpen={setOpen} setRegisterOpen={setRegisterOpen} />
         </DialogContent>
       </Dialog>
     </>

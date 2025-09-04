@@ -14,8 +14,10 @@ import { useState } from "react";
 
 export function RegisterForm({
   className,
+  setOpen,
+  setLoginOpen,
   ...props
-}: React.ComponentProps<"div">) {
+}: React.ComponentProps<"div"> & { setOpen: (open: boolean) => void, setLoginOpen: (open: boolean) => void }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -88,6 +90,15 @@ export function RegisterForm({
               <div className="flex flex-col gap-3">
                 <Button type="submit" className="w-full">
                   Cadastrar
+                </Button>
+                <Button
+                  variant="link"
+                  onClick={() => {
+                    setOpen(false);
+                    setLoginOpen(true);
+                  }}
+                >
+                  Já tem uma conta? Faça login
                 </Button>
               </div>
             </div>

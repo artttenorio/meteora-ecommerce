@@ -15,8 +15,10 @@ import { Link } from "react-router-dom";
 
 export function LoginForm({
   className,
+  setOpen,
+  setRegisterOpen,
   ...props
-}: React.ComponentProps<"div">) {
+}: React.ComponentProps<"div"> & { setOpen: (open: boolean) => void, setRegisterOpen: (open: boolean) => void }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -95,9 +97,15 @@ export function LoginForm({
             </div>
             <div className="mt-4 text-center text-sm">
               Ainda não te uma conta?{" "}
-              <Link to="/register" className="underline underline-offset-4">
+              <Button
+                variant="link"
+                onClick={() => {
+                  setOpen(false);
+                  setRegisterOpen(true);
+                }}
+              >
                 Cadastre-se aqui
-              </Link>
+              </Button>
             </div>
           </form>
         </CardContent>

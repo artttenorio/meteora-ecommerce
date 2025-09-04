@@ -1,10 +1,13 @@
 import { useState } from "react";
 import logo from "../../assets/images/logos/logo1.png";
 import LoginModal from "../login-area/login";
+import RegisterModal from "../login-area/register-modal";
 import LoggedInHeader from "./LoggedInHeader";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [registerModalOpen, setRegisterModalOpen] = useState(false);
   const token = localStorage.getItem("token");
 
   if (token) {
@@ -48,14 +51,8 @@ export default function Header() {
           </div>
 
           <div className="hidden sm:flex space-x-4">
-            <LoginModal />
-            <button
-              type="submit"
-              className="text-white border-2 border-white px-3 "
-            >
-              {" "}
-              Cadastro
-            </button>
+            <LoginModal open={loginModalOpen} setOpen={setLoginModalOpen} setRegisterOpen={setRegisterModalOpen} />
+            <RegisterModal open={registerModalOpen} setOpen={setRegisterModalOpen} setLoginOpen={setLoginModalOpen} />
           </div>
           <button
             className="flex md:hidden text-white text-2xl"
@@ -80,12 +77,8 @@ export default function Header() {
             <a className="hover:underline" href="#">
               Promoções
             </a>
-            <button className="text-white bg-[#9353FF] px-3 py-1 rounded mt-2">
-              Login
-            </button>
-            <button className="text-white border-2 border-white px-3 py-1 rounded">
-              Cadastro
-            </button>
+            <LoginModal open={loginModalOpen} setOpen={setLoginModalOpen} setRegisterOpen={setRegisterModalOpen} />
+            <RegisterModal open={registerModalOpen} setOpen={setRegisterModalOpen} setLoginOpen={setLoginModalOpen} />
           </div>
         )}
       </header>
