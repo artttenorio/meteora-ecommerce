@@ -7,20 +7,30 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-
-import { Link } from "react-router-dom";
 
 export function LoginForm({
   className,
   setOpen,
   setRegisterOpen,
   ...props
-}: React.ComponentProps<"div"> & { setOpen: (open: boolean) => void, setRegisterOpen: (open: boolean) => void }) {
+}: React.ComponentProps<"div"> & {
+  setOpen: (open: boolean) => void;
+  setRegisterOpen: (open: boolean) => void;
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isErrorDialogOpen, setIsErrorDialogOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,81 +45,93 @@ export function LoginForm({
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", data.access_token);
-        alert("Login realizado com sucesso!");
+        window.location.reload();
       } else {
-        alert("Email ou senha incorretos.");
+        setErrorMessage("Email ou senha incorretos.");
+        setIsErrorDialogOpen(true);
       }
     } catch (error) {
       console.error("Erro ao fazer login:", error);
-      alert("Erro ao fazer login.");
+      setErrorMessage("Erro ao fazer login. Tente novamente mais tarde.");
+      setIsErrorDialogOpen(true);
     }
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
-        <CardHeader>
-          <CardTitle>Faça Login Na sua Conta </CardTitle>
-          <CardDescription>
-            Insira seu email abaixo par realizar o login
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="grid gap-3">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    esqueceu sua senha?
-                  </a>
+    <>
+      <div className={cn("flex flex-col gap-6", className)} {...props}>
+        <Card>
+          <CardHeader>
+            <CardTitle>Faça Login Na sua Conta </CardTitle>
+            <CardDescription>
+              Insira seu email abaixo par realizar o login
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit}>
+              <div className="flex flex-col gap-6">
+                <div className="grid gap-3">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="m@example.com"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
-                <Input
-                  id="password"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <div className="grid gap-3">
+                  <div className="flex items-center">
+                    <Label htmlFor="password">Password</Label>
+                    <a
+                      href="#"
+                      className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                    >
+                      esqueceu sua senha?
+                    </a>
+                  </div>
+                  <Input
+                    id="password"
+                    type="password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Button type="submit" className="w-full">
+                    Login
+                  </Button>
+                  <Button variant="outline" className="w-full">
+                    Login with Google
+                  </Button>
+                </div>
               </div>
-              <div className="flex flex-col gap-3">
-                <Button type="submit" className="w-full">
-                  Login
-                </Button>
-                <Button variant="outline" className="w-full">
-                  Login with Google
+              <div className="mt-4 text-center text-sm">
+                Ainda não te uma conta?{" "}
+                <Button
+                  variant="link"
+                  onClick={() => {
+                    setOpen(false);
+                    setRegisterOpen(true);
+                  }}
+                >
+                  Cadastre-se aqui
                 </Button>
               </div>
-            </div>
-            <div className="mt-4 text-center text-sm">
-              Ainda não te uma conta?{" "}
-              <Button
-                variant="link"
-                onClick={() => {
-                  setOpen(false);
-                  setRegisterOpen(true);
-                }}
-              >
-                Cadastre-se aqui
-              </Button>
-            </div>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+      <Dialog open={isErrorDialogOpen} onOpenChange={setIsErrorDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Erro de Login</DialogTitle>
+            <DialogDescription>{errorMessage}</DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
