@@ -10,7 +10,8 @@ export default function ProductRegister() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [image, setImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>('');
   const [stock, setStock] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [categories, setCategories] = useState<Category[]>([]);
@@ -28,26 +29,45 @@ export default function ProductRegister() {
     fetchCategories();
   }, []);
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImage(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const newProduct = {
-      name,
-      description,
-      price: parseFloat(price),
-      imageUrl,
-      stock: parseInt(stock, 10),
-      categoryId: parseInt(categoryId, 10),
-    };
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('price', price);
+    formData.append('stock', stock);
+    formData.append('categoryId', categoryId);
+
+    if (image) {
+      formData.append('image', image);
+    }
 
     try {
-      await axios.post('http://localhost:3000/products', newProduct);
+      await axios.post('http://localhost:3000/products', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       alert('Produto cadastrado com sucesso!');
       // Clear form
       setName('');
       setDescription('');
       setPrice('');
-      setImageUrl('');
+      setImage(null);
+      setImagePreview('');
       setStock('');
       setCategoryId('');
     } catch (error) {
@@ -110,15 +130,24 @@ export default function ProductRegister() {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="imageUrl" className="block text-gray-700 font-semibold mb-2">URL da Imagem</label>
+          <label htmlFor="image" className="block text-gray-700 font-semibold mb-2">Imagem do Produto</label>
           <input
-            type="text"
-            id="imageUrl"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
+            type="file"
+            id="image"
+            accept="image/*"
+            onChange={handleImageChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-md"
             required
           />
+          {imagePreview && (
+            <div className="mt-3">
+              <img
+                src={imagePreview}
+                alt="Preview"
+                className="w-32 h-32 object-cover rounded-md border border-gray-300"
+              />
+            </div>
+          )}
         </div>
 
         <div className="mb-6">
