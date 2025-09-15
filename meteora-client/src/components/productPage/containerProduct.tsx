@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useCart } from "@/contexts/CartContext";
 
 type Product = {
   id: number;
@@ -13,6 +14,8 @@ type Product = {
 export default function ProductContainer() {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
+  const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     async function fetchProduct() {
@@ -98,11 +101,46 @@ export default function ProductContainer() {
 
           <div className="flex items-center space-x-4 mb-60">
             <div className="flex items-center border-2 border-gray-300 rounded-md">
-              <button className="px-3 py-1">-</button>
-              <span className="px-4">1</span>
-              <button className="px-3 py-1">+</button>
+              <button
+                className="px-3 py-1 hover:bg-gray-100"
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              >
+                -
+              </button>
+              <span className="px-4">{quantity}</span>
+              <button
+                className="px-3 py-1 hover:bg-gray-100"
+                onClick={() => setQuantity(quantity + 1)}
+              >
+                +
+              </button>
             </div>
-            <button className="bg-blue-600 text-white font-bold px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+            <button
+              className="bg-blue-600 text-white font-bold px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+              onClick={() => {
+                console.log('Add to cart clicked', { product, quantity });
+                if (product) {
+                  try {
+                    // Convert product to the format expected by cart
+                    const cartProduct = {
+                      ...product,
+                      price: parseFloat(product.price) // Convert string to number
+                    };
+
+                    for (let i = 0; i < quantity; i++) {
+                      addToCart(cartProduct);
+                    }
+                    alert(`${quantity} item(s) adicionado(s) ao carrinho!`);
+                    setQuantity(1);
+                  } catch (error) {
+                    console.error('Error adding to cart:', error);
+                    alert('Erro ao adicionar item ao carrinho');
+                  }
+                } else {
+                  console.error('No product data available');
+                }
+              }}
+            >
               Adicionar à Sacola
             </button>
           </div>

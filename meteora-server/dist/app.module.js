@@ -16,6 +16,7 @@ const category_module_1 = require("./api/auth/category/category.module");
 const product_module_1 = require("./api/product/product.module");
 const auth_module_1 = require("./api/auth/auth.module");
 const users_module_1 = require("./api/users/users.module");
+const order_module_1 = require("./api/order/order.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -30,6 +31,7 @@ exports.AppModule = AppModule = __decorate([
             product_module_1.ProductModule,
             auth_module_1.AuthModule,
             users_module_1.UsersModule,
+            order_module_1.OrderModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

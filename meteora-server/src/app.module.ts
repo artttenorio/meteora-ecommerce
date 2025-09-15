@@ -7,6 +7,7 @@ import { CategoryModule } from './api/auth/category/category.module';
 import { ProductModule } from './api/product/product.module';
 import { AuthModule } from './api/auth/auth.module';
 import { UsersModule } from './api/users/users.module';
+import { OrderModule } from './api/order/order.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { UsersModule } from './api/users/users.module';
     ProductModule,
     AuthModule,
     UsersModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

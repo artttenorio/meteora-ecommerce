@@ -1,10 +1,12 @@
 import { useState } from "react";
 import logo from "../../assets/images/logos/logo1.png";
 import { Link, useNavigate } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
 
 export default function LoggedInHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const { cartItems } = useCart();
 
   const handleLogout = () => {
     // Remove tokens do localStorage e sessionStorage
@@ -27,19 +29,21 @@ export default function LoggedInHeader() {
     <>
       <header className="bg-[#000000] w-full py-3 px-6">
         <div className="flex items-center justify-between ">
-          <img
-            src={logo}
-            alt="
-            logo"
-            height={100}
-            width={100}
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              alt="logo"
+              height={100}
+              width={100}
+              className="cursor-pointer"
+            />
+          </Link>
 
           <nav
             className="hidden md:flex text-white space-x-6 text-sm cursor-pointer
           "
           >
-            <a className=" hover:underline"> Home </a>
+            <Link to="/" className=" hover:underline"> Home </Link>
             <a className=" hover:underline"> Nossas Lojas </a>
             <a className=" hover:underline"> Novidades </a>
             <a className=" hover:underline"> Promoções </a>
@@ -59,19 +63,31 @@ export default function LoggedInHeader() {
             </button>
           </div>
 
-          <div className="hidden sm:flex space-x-4">
+          <div className="hidden sm:flex space-x-4 items-center">
+            <Link to="/kart">
+              <button
+                type="button"
+                className="text-white border-2 border-white px-3 py-1 relative hover:bg-white hover:text-black transition-colors"
+              >
+                🛒 Carrinho
+                {cartItems.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartItems.length}
+                  </span>
+                )}
+              </button>
+            </Link>
             <Link to="/profile">
               <button
-                type="submit"
-                className="text-white border-2 border-white px-3 "
+                type="button"
+                className="text-white border-2 border-white px-3 py-1 hover:bg-white hover:text-black transition-colors"
               >
-                {" "}
                 Profile
               </button>
             </Link>
             <button
               onClick={handleLogout}
-              className="text-white border-2 border-white px-3 "
+              className="text-white border-2 border-white px-3 py-1 hover:bg-red-500 hover:border-red-500 transition-colors"
             >
               Logout
             </button>
@@ -87,9 +103,9 @@ export default function LoggedInHeader() {
 
         {menuOpen && (
           <div className="md:hidden bg-[#1a1a1a] text-white flex flex-col space-y-2 px-6 py-4">
-            <a className="hover:underline" href="#">
+            <Link to="/" className="hover:underline">
               Home
-            </a>
+            </Link>
             <a className="hover:underline" href="#">
               Nossas Lojas
             </a>
@@ -99,6 +115,16 @@ export default function LoggedInHeader() {
             <a className="hover:underline" href="#">
               Promoções
             </a>
+            <Link to="/kart">
+              <button className="text-white bg-blue-600 px-3 py-1 rounded mt-2 flex items-center gap-2">
+                🛒 Carrinho
+                {cartItems.length > 0 && (
+                  <span className="bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartItems.length}
+                  </span>
+                )}
+              </button>
+            </Link>
             <Link to="/profile">
               <button className="text-white bg-[#9353FF] px-3 py-1 rounded mt-2">
                 Profile

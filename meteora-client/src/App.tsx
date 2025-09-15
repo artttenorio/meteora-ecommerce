@@ -8,10 +8,11 @@ import ProductRegister from "./components/admin/product-Register/ProductRegister
 import ViewProducts from "./pages/ViewProducts";
 import RegisterPage from "./pages/registerPage";
 import Profile from "./pages/Profile";
+import { CartProvider } from "./contexts/CartContext";
 
 function App() {
   return (
-    <>
+    <CartProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<InitialPage />} />
@@ -25,7 +26,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </CartProvider>
   );
 }
 
